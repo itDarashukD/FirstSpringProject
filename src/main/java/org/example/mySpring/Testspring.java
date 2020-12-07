@@ -4,33 +4,32 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Testspring {
     public static void main(String[] args) {
-             //указываес из какого файла будем получать БИН
+        //указываес из какого файла будем получать БИН
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext.xml"
         );
-        ClassicalMusic classicalMusic = context.getBean("musicalBean3",ClassicalMusic.class);
-        classicalMusic.getSong();
 
-            //получаем БИН,Он будет того класса,который указан в файле с описание создаваемого Бина
-            //Music music = context.getBean("musicalBean",Music.class);
-
-            //создаем зависимость (передаем БИН)
-            //       MusicPlayer musicPlayer = new MusicPlayer(music);
-            //      musicPlayer.playMusic();
-
-            //________________________________________________________________________
-            //dependence injection
-            //В файле аппликатион,мы сделали напрямую зависимость     <constructor-arg ref="musicalBean"/>
-            // БИНА music и Бина musicPlayer - т.е.без вышеуказанного кода
-//        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+//        //получаем БИН,Он будет того класса,который указан в файле с описание создаваемого Бина
+//        Music music = context.getBean("rockMusic", Music.class);
+//        ClassicalMusic classicalMusic = context.getBean("classicalMusic",ClassicalMusic.class);
 //
-//            //________________________________________________________________________
-//            //dependence with setter
+//        //создаем зависимость (передаем БИН)
+//        MusicPlayer musicPlayer = new MusicPlayer(music);
 //        musicPlayer.playMusic();
+//
+//        MusicPlayer classicalMusicPlayer = new MusicPlayer(classicalMusic);
+//        classicalMusicPlayer.playMusic();
 
+        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        System.out.println(musicPlayer.getName());
+        System.out.println(musicPlayer.getVolume());
 
-        context.close();
-//        System.out.println(musicPlayer.getName());
-//        System.out.println(musicPlayer.getVolume());
-    }
-}
+        ClassicalMusic classicalMusic1 = context.getBean("classicalMusic", ClassicalMusic.class);
+
+            classicalMusic1.getSong();
+//        Computer computer = context.getBean("computer",Computer.class);
+//        System.out.println(computer);
+                context.close();
+
+            }
+        }

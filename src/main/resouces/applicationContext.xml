@@ -6,66 +6,8 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
+        <context:component-scan base-package="org.example.mySpring"/>   <!--   тэг сканирует Спринг по классам-->
 
-    <!-- при помощи тега context:property-placeholder location  -
-     мы подтягиваем наш файл с пропертями,там лежат значения,
-    которые будут присвоены переменным с помощью сеттеров:-->
-
-    <context:property-placeholder location="MusicPlayer.properties"/>
-
-    <!--    <bean id="listMusic" class="org.example.mySpring.MusicPlayer"/>-->
-
-
-    <!--    <bean id="musicalBean"-->
-    <!--          class="org.example.mySpring.RockMusic">-->
-    <!--    </bean>-->
-    <!--    <bean id="musicalBean2"-->
-    <!--          class="org.example.mySpring.RapMusic">-->
-    <!--    </bean>-->
-    <bean id="musicalBean3"
-          class="org.example.mySpring.ClassicalMusic"
-          init-method="doMyInit"
-          destroy-method="doMyDestroy"
-          factory-method="getClassicalMusic">  <!-- вызывает init-method метод при начале работы-->
-                                                <!-- вызывает destroy-method метод в конце работы,
-                                                не вызывается если scope = prototype
-                                               factory-method - говорит спрингу, что БИНЫ нужно создавать
-                                               только через фабрику  -->
-
-    </bean>
-
-    <!--    <bean id="musicPlayer"-->
-    <!--          class="org.example.mySpring.MusicPlayer"-->
-    <!--          scope="prototype">       // указывает,что каждый БИН теперь новый объект,-->
-    <!--                                   СИНГЛТОН уже не используется&ndash;&gt;-->
-
-    <!--                      &lt;!&ndash; заполняем ЛИСТ БИНАМИ : &ndash;&gt;-->
-    <!--        <property name="musicList">-->
-    <!--            <list>-->
-    <!--                <ref bean="musicalBean"></ref>-->
-    <!--                <ref bean="musicalBean2"></ref>-->
-    <!--                <ref bean="musicalBean3"></ref>-->
-
-    <!--            </list>-->
-    <!--        </property>-->
-
-
-    <!--        &lt;!&ndash; при помощи тега constructor-arg ref  - это депенденси инжекшен:-->
-    <!--        <constructor-arg ref="musicalBean"/>-->
-
-    <!--        <!- при помощи тега property ref  - это депенденси инжекшен через сеттер:-->
-    <!--        "music"-это так спринг видит наш сеттер&ndash;&gt;-->
-
-    <!--        <property name="music" ref="musicalBean"/>-->
-
-
-    <!--        &lt;!&ndash;        <property name="name" value="someName"/>&ndash;&gt;-->
-    <!--        &lt;!&ndash;        <property name="volume" value="15"/>&ndash;&gt;-->
-
-    <!--        &lt;!&ndash; regex ${} мы подтягиваем значения в сеттеры из файла &ndash;&gt;-->
-    <!--        <property name="name" value="${musicPlayer.name}"/>-->
-    <!--        <property name="volume" value="${musicPlayer.volume}"/>-->
-
-    <!--    </bean>-->
+        <context:property-placeholder location="MusicPlayer.properties"/>
 
 </beans>

@@ -1,27 +1,31 @@
 package org.example.mySpring;
 
 import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+@Component
 public class ClassicalMusic implements Music{
 
-
-    private ClassicalMusic(){};//делаем метод фабрика
-
-    public static ClassicalMusic getClassicalMusic(){
-        return new ClassicalMusic();
+    @PostConstruct
+    public void doInitialization(){
+        System.out.println("do init this BEAN");
+    }
+    @PreDestroy
+    public  void doDestroy(){
+        System.out.println("do this BEAN destroy ");
     }
 
-
-
-    public void doMyInit(){
-        System.out.println("doing so initialization");
-    }
-    public void doMyDestroy(){
-        System.out.println("destroyes BINs");
-    }
     @Override
     public String getSong() {
-        System.out.println("Hungarian rapsody");
-         return  "Hungarian rapsody";
+        System.out.println("Yesterday");
+
+         return  "Yesterday";
     }
 }
